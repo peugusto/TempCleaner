@@ -33,39 +33,41 @@ public static void main(String[] args) {
 	char result = sc.nextLine().charAt(0);
 	switch(result){
 	case 'y':
-		for(File p : archives) {
-			deleteFiles(p,b);
-		}
-		
-		for(File f : files) {
-
-			if(f.delete()) {
-				b.addBytes(f.length());
-				System.out.println("Apagado: " + f.getName());
-			}else {
-				System.out.println("Não foi possivel apagar: " + f.getName());
+		try {
+			for(File p : archives) {
+				deleteFiles(p,b);
 			}
+			
+			for(File f : files) {
+				if(f.delete()) {
+					b.addBytes(f.length());
+					System.out.println("Apagado: " + f.getName());
+				}else {
+					System.out.println("Não foi possivel apagar: " + f.getName());
+				}
+			}
+			
+			System.out.println("Finalizado.");
+			
+		}catch(RuntimeException e) {
+			System.out.println("Error: ");
+			System.out.println(e.getMessage());
+		}finally {
+			System.out.println("-------------------------------------------------");
+			freeSpace(b);
+			System.out.println("Digite qualquer tecla + enter para encerrar...");
+			sc.next();
+			System.out.println("-------------------------------------------------");	
 		}
-		
-		System.out.println("Finalizado.");
-		
 		break;
 	case 'n':
-		System.out.println("Encerrando...");
 		System.exit(0);
 		break;
 	default:
-		System.out.println("Operação errada, encerrando...");
 		System.exit(-1);
 		break;
 	}
-	System.out.println("-------------------------------------------------");
-	freeSpace(b);
-	System.out.println("Digite qualquer tecla para encerrar...");
-	String parar = sc.nextLine();
-	System.out.println("-------------------------------------------------");
 }
-
 	public static void deleteFiles(File fl,FileStorage b) {
 		File file = new File(fl.getPath());
 		File[] files = file.listFiles(File::isFile);
