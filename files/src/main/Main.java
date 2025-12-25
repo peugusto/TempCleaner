@@ -53,11 +53,11 @@ public static void main(String[] args) {
 			System.out.println("Error: ");
 			System.out.println(e.getMessage());
 		}finally {
-			System.out.println("-------------------------------------------------");
+			System.out.println("--------------------------------------------------");
 			freeSpace(b);
 			System.out.println("Digite qualquer tecla + enter para encerrar...");
 			sc.next();
-			System.out.println("-------------------------------------------------");	
+			System.out.println("--------------------------------------------------");	
 		}
 		break;
 	case 'n':
