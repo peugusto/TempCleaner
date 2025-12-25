@@ -74,8 +74,9 @@ public static void main(String[] args) {
 		File[] arqs = file.listFiles(File::isDirectory);
 		
 		for(File f : files) {
+			long tamanho = f.length();
 			if(f.delete()) {
-				b.addBytes(f.length());
+				b.addBytes(tamanho);
 				System.out.println("Apagado: " + f.getName());
 			}else {
 				System.out.println("Não foi possivel apagar: " + f.getName());
