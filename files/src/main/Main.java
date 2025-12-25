@@ -47,7 +47,7 @@ public static void main(String[] args) {
 				}
 			}
 			
-			System.out.println("Finalizado.");
+			System.out.println("Finalizado..");
 			
 		}catch(RuntimeException e) {
 			System.out.println("Error: ");
